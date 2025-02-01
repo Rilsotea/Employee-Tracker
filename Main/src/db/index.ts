@@ -53,3 +53,28 @@ export async function mainMenu(): Promise<void> {
     }
   }
 }
+
+async function viewDepartments(): Promise<void> {
+    const [rows] = await db.query('SELECT * FROM department');
+    console.table(rows);
+}
+
+async function viewRoles(): Promise<void> {
+    const [rows] = await db.query(`
+    SELECT role.id, role.title, department.name AS department, role.salary 
+    FROM role 
+    JOIN department ON role.department_id = department.id`);
+    console.table(rows);
+}
+
+async function viewEmployees(): Promise<void> {
+    const [rows] = await db.query(`
+    SELECT employee.id, employee.first_name, employee.last_name, role.title, 
+    department.name AS department, role.salary,
+    COALESCE(CONCAT(manager.first_name, ' ', manager.last_name), 'None') AS manager 
+    FROM employee 
+    JOIN role ON employee.role_id = role.id 
+    JOIN department ON role.department_id = department.id 
+    LEFT JOIN employee AS manager ON employee.manager_id = manager.id`);
+    console.table(rows);
+}
