@@ -1,8 +1,15 @@
 import dotenv from 'dotenv';
+import { Pool } from 'pg';
+
 dotenv.config();
 
-import pg from 'pg';
-
+const pool = new Pool({
+  user: process.env.DB_USER,            
+  host: process.env.DB_HOST,            
+  database: 'employee_tracker_db',       
+  password: process.env.DB_PASSWORD,     
+  port: process.env.DB_PORT,             
+});
 
 const connectToDb = async () => {
   try {

@@ -1,4 +1,5 @@
 import inquirer from 'inquirer';
+import { db } from './db'; 
 
 export async function mainMenu(): Promise<void> {
   while (true) {
@@ -81,9 +82,19 @@ async function addDepartment(): Promise<void> {
     const { name } = await inquirer.prompt([
       { type: 'input', name: 'name', message: 'Enter the name of the department:' }
     ]);
-    await db.query('INSERT INTO department (name) VALUES (?)', [name]);
-    console.log('Department added!');
-  }
+
+    if (!name) {
+      console.log('Department name cannot be empty.');
+      return;
+    }
+
+    try {
+      await db.query('INSERT INTO department (name) VALUES (?)', [name]);
+      console.log('Department added!');
+    } catch (error) {
+      console.error('Error adding department:', error);
+    }
+}
   
   async function addRole(): Promise<void> {
     const [departments] = await db.query('SELECT * FROM department');
