@@ -6,7 +6,7 @@ CREATE DATABASE employee_tracker_db;
 CREATE TABLE department (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
-)
+);
 
 CREATE TABLE role (
     id SERIAL PRIMARY KEY,
@@ -14,7 +14,7 @@ CREATE TABLE role (
     salary DECIMAL(10, 2) NOT NULL,
     department_id INT NOT NULL,
     FOREIGN KEY (department_id) REFERENCES department(id)
-)
+);
 
 CREATE TABLE employee (
     id SERIAL PRIMARY KEY,
@@ -24,4 +24,4 @@ CREATE TABLE employee (
     manager_id INT,
     FOREIGN KEY (role_id) REFERENCES role(id),
     FOREIGN KEY (manager_id) REFERENCES employee(id)
-)
+);

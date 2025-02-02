@@ -1,5 +1,6 @@
 import inquirer from 'inquirer';
-import { db } from './db'; 
+import { db } from 'pg'; 
+import { pool } from './connections';
 
 export async function mainMenu(): Promise<void> {
   while (true) {
@@ -22,7 +23,7 @@ export async function mainMenu(): Promise<void> {
     ]);
 
     if (choice === 'Exit') {
-      await db.end();
+      await pool.end();
       console.log('Goodbye!');
       break;
     }
@@ -54,12 +55,12 @@ export async function mainMenu(): Promise<void> {
 }
 
 async function viewDepartments(): Promise<void> {
-    const [rows] = await db.query('SELECT * FROM department');
+    const { rows } = await pool.query('SELECT * FROM department');
     console.table(rows);
 }
 
 async function viewRoles(): Promise<void> {
-    const [rows] = await db.query(`
+    const { rows } = await pool.query(`
     SELECT role.id, role.title, department.name AS department, role.salary 
     FROM role 
     JOIN department ON role.department_id = department.id`);
@@ -67,7 +68,7 @@ async function viewRoles(): Promise<void> {
 }
 
 async function viewEmployees(): Promise<void> {
-    const [rows] = await db.query(`
+    const { rows } = await pool.query(`
     SELECT employee.id, employee.first_name, employee.last_name, role.title, 
     department.name AS department, role.salary,
     COALESCE(CONCAT(manager.first_name, ' ', manager.last_name), 'None') AS manager 

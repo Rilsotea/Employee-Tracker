@@ -1,7 +1,3 @@
-INSERT INTO department (role_id, manager_id, salary, department_id) 
-VALUES (1, 1, 100000, 1);
-
-
 INSERT INTO department (name) VALUES
 ('Engineering'),
 ('Finance'),
@@ -16,8 +12,8 @@ INSERT INTO role (title, salary, department_id) VALUES
 ('Marketing Specialist', 75000, 4);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES
-('Alice', 'Johnson', 1, NULL),
-('Bob', 'Smith', 2, 1),
-('Charlie', 'Brown', 3, NULL),
-('Dana', 'White', 4, NULL),
-('Eve', 'Davis', 5, NULL);
+('Joe', 'Jim', 1, NULL),
+('Bob', 'Hunter', 2, 1),
+('Steve', 'Will', 3, NULL),
+('Charles', 'Jones', 4, NULL),
+('Trevor', 'Sam', 5, NULL);

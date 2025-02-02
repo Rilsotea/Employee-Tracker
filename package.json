@@ -3,5 +3,19 @@
     "dotenv": "^16.4.7",
     "inquirer": "^12.3.3",
     "pg": "^8.13.1"
-  }
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.11"
+  },
+  "name": "employee-management",
+  "version": "1.0.0",
+  "description": "## Your Task",
+  "main": "tracker.js",
+  "scripts": {
+    "start": "node ./src/db/tracker.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
