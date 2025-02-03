@@ -5,14 +5,16 @@
     "pg": "^8.13.1"
   },
   "devDependencies": {
-    "@types/pg": "^8.11.11"
+    "@types/inquirer": "^9.0.7",
+    "@types/pg": "^8.11.11",
+    "ts-node": "^10.9.2"
   },
   "name": "employee-management",
   "version": "1.0.0",
   "description": "## Your Task",
-  "main": "tracker.js",
+  "main": "connection.js",
   "scripts": {
-    "start": "node ./src/db/tracker.js",
+    "start": "node ./src/db/connection.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
