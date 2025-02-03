@@ -2,6 +2,7 @@ import inquirer from 'inquirer';
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
 import { viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee, updateEmployeeRole } from './db/index';
+import { connectToDb } from './db/connections';
 
 dotenv.config();
 
@@ -65,4 +66,9 @@ export async function mainMenu(): Promise<void> {
   }
 }
 
-mainMenu();
+const startApp = async () => {
+  await connectToDb();
+  mainMenu();
+};
+
+startApp();
