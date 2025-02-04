@@ -1,12 +1,11 @@
 import inquirer from 'inquirer';
-import { Pool } from 'pg';
+import pg from 'pg';
 import dotenv from 'dotenv';
-import { viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee, updateEmployeeRole } from './db/index';
-import { connectToDb } from './db/connections';
-
+import { viewDepartments, viewRoles, viewEmployees, addDepartment, addRole, addEmployee, updateEmployeeRole } from './db/index.js';
+import { connectToDb } from './db/connections.js';
 dotenv.config();
 
-const pool = new Pool({
+const pool = new pg.Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
